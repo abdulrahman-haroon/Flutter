@@ -21,6 +21,7 @@ class CoffeePrefs extends StatelessWidget {
                 width: 50
                 )
             ),
+            //Add Button
             const Text("+")
           ],
         ),
@@ -38,6 +39,7 @@ class CoffeePrefs extends StatelessWidget {
                 width: 50
                 )
               ),          
+            //Add Button
             const Text("+")
             ],
         ),     
