@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:ms_5_sneaker/components/bottom_nav_bar.dart';
 import 'package:ms_5_sneaker/pages/cart_page.dart';
 import 'package:ms_5_sneaker/pages/shop_page.dart';
@@ -52,10 +53,12 @@ class _HomePageState extends State<HomePage> {
           children: [
             Column(children: [
               //logo
-              DrawerHeader(
+              Container( 
+                height: 150,
+                padding: EdgeInsets.only(top: 25),
+                margin: EdgeInsets.only(top: 25),
                 child: Image.asset(
                   'lib/images/logo.jpg',
-                  height: 240,
                   color: Colors.white,
                 ),
               ),
