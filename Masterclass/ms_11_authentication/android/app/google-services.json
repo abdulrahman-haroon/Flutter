@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "19174580354",
+    "project_id": "authtutorial-16976",
+    "storage_bucket": "authtutorial-16976.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19174580354:android:bedfad34f15926c273d49b",
+        "android_client_info": {
+          "package_name": "com.example.ms_11_authentication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuRNydB8ix1q0eeS3ZE8eIWBcoFsa7RsM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
