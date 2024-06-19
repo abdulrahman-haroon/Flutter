@@ -1,3 +1,4 @@
+import 'package:clean_arch/features/daily_news/data/data_sources/local/app_database.dart';
 import 'package:clean_arch/features/daily_news/data/data_sources/remote/news_api_service.dart';
 import 'package:clean_arch/features/daily_news/data/repository/article_repository_impl.dart';
 import 'package:clean_arch/features/daily_news/domain/repository/article_repository.dart';
@@ -9,6 +10,10 @@ import 'package:dio/dio.dart';
 final sl = GetIt.instance;
 
 Future<void> initializeDependencies() async {
+  final database =
+      await $FloorAppDatabase.databaseBuilder('app_database.db').build();
+
+  sl.registerSingleton<AppDatabase>(database);
   // Dio
   sl.registerSingleton<Dio>(Dio());
 
@@ -21,5 +26,5 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<GetArticleUseCase>(GetArticleUseCase(sl()));
 
   //Blocs
-  sl.registerFactory<RemoteArticleBloc>(()=> RemoteArticleBloc(sl()));
+  sl.registerFactory<RemoteArticleBloc>(() => RemoteArticleBloc(sl()));
 }
