@@ -2,15 +2,17 @@ import 'dart:io';
 
 import 'package:clean_arch/core/constants/constants.dart';
 import 'package:clean_arch/core/resources/data_state.dart';
+import 'package:clean_arch/features/daily_news/data/data_sources/local/app_database.dart';
 import 'package:clean_arch/features/daily_news/data/data_sources/remote/news_api_service.dart';
 import 'package:clean_arch/features/daily_news/data/models/article.dart';
+import 'package:clean_arch/features/daily_news/domain/entities/article.dart';
 import 'package:clean_arch/features/daily_news/domain/repository/article_repository.dart';
 import 'package:dio/dio.dart';
 
 class ArticleRepositoryImpl implements ArticleRepository {
   final NewsApiService _newsApiService;
-
-  ArticleRepositoryImpl(this._newsApiService);
+  final AppDatabase _appDatabase;
+  ArticleRepositoryImpl(this._newsApiService, this._appDatabase);
 
   @override
   Future<DataState<List<ArticleModel>>> getNewsArticle() async {
@@ -32,5 +34,20 @@ class ArticleRepositoryImpl implements ArticleRepository {
     } on DioException catch (e) {
       return DataFailed(e);
     }
+  }
+
+  @override
+  Future<List<ArticleModel>> getSavedArticles() {
+    return _appDatabase.articleDao.getArticles();
+  }
+
+  @override
+  Future<void> removeArticle(ArticleEntity article) {
+    return _appDatabase.articleDao.deleteArticle(ArticleModel.fromEntity(article));
+  }
+
+  @override
+  Future<void> saveArticle(ArticleEntity article) {
+    return _appDatabase.articleDao.insertArticle(ArticleModel.fromEntity(article));
   }
 }
